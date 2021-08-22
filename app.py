@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 CORS(app)
 
-ENV = "prod"
+ENV = "dev"
 
 if ENV == "dev":
     app.debug = True
@@ -32,7 +32,7 @@ def HomeTestRoute():
 @app.route("/api/get-all-policies", methods=["GET"])
 def getAllPolicies():
     if(request.method == "GET"):
-        allPolicies = list(PolicyCollection.find())
+        allPolicies = list(PolicyCollection.find().sort("policy_id"))
 
         if (allPolicies != None):
             jsonString = json.dumps(allPolicies, default=json_util.default)
@@ -63,7 +63,7 @@ def updateUserPolicy():
                 or request.json["collision"] == None
                 or request.json["comprehensive"] == None
                 or request.json["customer_gender"] == None
-                or request.json["customer_income_group"] == None
+                or request.json["customer_Income_group"] == None
                 or request.json["customer_region"] == None
                 or request.json["customer_marital_status"] == None):
             return {"status": 400,
@@ -85,7 +85,7 @@ def updateUserPolicy():
                                                                                     "collision": request.json["collision"],
                                                                                     "comprehensive": request.json["comprehensive"],
                                                                                     "customer_gender": request.json["customer_gender"],
-                                                                                    "customer_income_group": request.json["customer_income_group"],
+                                                                                    "customer_Income_group": request.json["customer_Income_group"],
                                                                                     "customer_region": request.json["customer_region"],
                                                                                     "customer_marital_status": request.json["customer_marital_status"]}})
 
