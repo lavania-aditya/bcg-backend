@@ -26,7 +26,7 @@ PolicyCollection = db.policies
 
 @app.route("/", methods=["GET"])
 def HomeTestRoute():
-    return("Test Home")
+    return("Server Running")
 
 
 @app.route("/api/get-all-policies", methods=["GET"])
