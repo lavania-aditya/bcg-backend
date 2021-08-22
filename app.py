@@ -2,12 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for
 from bson import ObjectId, json_util
 import json
 from pymongo import MongoClient
-# from flask_cors import CORS
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
 
-# CORS(app)
+CORS(app)
 
 ENV = "prod"
 
